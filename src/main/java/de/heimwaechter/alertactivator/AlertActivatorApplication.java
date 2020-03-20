@@ -27,10 +27,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AlertactivatorApplication {
+public class AlertActivatorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AlertactivatorApplication.class, args);
+		SpringApplication.run(AlertActivatorApplication.class, args);
 	}
 
 }

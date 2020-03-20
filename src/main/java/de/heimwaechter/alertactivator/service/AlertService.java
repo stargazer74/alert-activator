@@ -24,12 +24,29 @@
 package de.heimwaechter.alertactivator.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.integration.dsl.IntegrationFlows;
+import org.springframework.integration.endpoint.MessageProducerSupport;
+import org.springframework.integration.handler.LoggingHandler;
+import org.springframework.messaging.MessageChannel;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 public class AlertService {
 
-    private void test(){
+    private final MessageProducerSupport messageProducerSupport;
+
+    public AlertService(MessageProducerSupport messageProducerSupport) {
+        this.messageProducerSupport = messageProducerSupport;
+    }
+
+    private void test() {
+        IntegrationFlows.from(this.messageProducerSupport).transform(p -> p + "here we go").handle(logger()).get();
+    }
+
+    private LoggingHandler logger() {
+        LoggingHandler loggingHandler = new LoggingHandler("INFO");
+        loggingHandler.setLoggerName("siSample");
+        return loggingHandler;
     }
 }
